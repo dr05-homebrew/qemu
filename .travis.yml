@@ -47,6 +47,7 @@ notifications:
 env:
   global:
     - TEST_CMD="make check"
+    - TARGETS=bfin-linux-user,bfin-softmmu
   matrix:
     - CONFIG=""
     - CONFIG="--enable-debug --enable-debug-tcg --enable-trace-backends=log"
@@ -63,7 +64,7 @@ before_install:
   - wget -O - http://people.linaro.org/~alex.bennee/qemu-submodule-git-seed.tar.xz | tar -xvJ
   - git submodule update --init --recursive
 before_script:
-  - ./configure --target-list=bfin-linux-user,bfin-softmmu ${CONFIG}
+  - ./configure --target-list=${TARGETS} ${CONFIG}
 script:
   - make -j3 && ${TEST_CMD}
 matrix:
@@ -88,6 +89,7 @@ matrix:
            TEST_CMD=""
       compiler: gcc
     - env: CONFIG=""
+           TARGETS="bfin-softmmu"
       os: osx
       compiler: clang
     - env: CONFIG=""
