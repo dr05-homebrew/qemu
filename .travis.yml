@@ -62,7 +62,7 @@ before_install:
   - wget -O - http://people.linaro.org/~alex.bennee/qemu-submodule-git-seed.tar.xz | tar -xvJ
   - git submodule update --init --recursive
 before_script:
-  - ./configure ${CONFIG}
+  - ./configure --target-list=linux-user-bfin,bfin-softmmu ${CONFIG}
 script:
   - make -j3 && ${TEST_CMD}
 matrix:
