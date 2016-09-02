@@ -28,6 +28,7 @@ struct bfin_memory_layout {
 
 static const struct bfin_memory_layout bf537_mem[] =
 {
+    LAYOUT(0xEF000000, 0x8000, "Boot ROM"),
     LAYOUT(0xFF800000, 0x4000, "L1 Data A"),
     LAYOUT(0xFF804000, 0x4000, "Data A Cache"),
     LAYOUT(0xFF900000, 0x4000, "Data B"),
