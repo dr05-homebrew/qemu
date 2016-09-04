@@ -1,4 +1,4 @@
-# QEMU for the DR-05
+# QEMU for the DR-05 [![(build status)](https://travis-ci.org/dr05-homebrew/qemu.png?branch=bfin)](https://travis-ci.org/dr05-homebrew/qemu)
 
 This repository is an attempt at emulating the DR-05 with [QEMU]. It would not be
 possible without [Mike Frysinger's Blackfin port of QEMU][bfin-qemu].
