@@ -36,6 +36,7 @@ static const struct bfin_memory_layout bf537_mem[] =
     LAYOUT(0xFFA00000, 0x8000, "Inst A"),
     LAYOUT(0xFFA08000, 0x4000, "Inst B"),
     LAYOUT(0xFFA10000, 0x4000, "Inst Cache"),
+    LAYOUT(0xFFB00000, 0x1000, "Scratchpad SRAM"),
     LAYOUT(0, 0, "SDRAM"),
 };
 
