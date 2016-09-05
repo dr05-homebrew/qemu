@@ -28,13 +28,25 @@ struct bfin_memory_layout {
 
 static const struct bfin_memory_layout bf537_mem[] =
 {
-    LAYOUT(0xEF000000, 0x8000, "Boot ROM"),
     LAYOUT(0xFF800000, 0x4000, "L1 Data A"),
     LAYOUT(0xFF804000, 0x4000, "Data A Cache"),
     LAYOUT(0xFF900000, 0x4000, "Data B"),
     LAYOUT(0xFF904000, 0x4000, "Data B Cache"),
     LAYOUT(0xFFA00000, 0x8000, "Inst A"),
     LAYOUT(0xFFA08000, 0x4000, "Inst B"),
+    LAYOUT(0xFFA10000, 0x4000, "Inst Cache"),
+    LAYOUT(0, 0, "SDRAM"),
+};
+
+static const struct bfin_memory_layout bf51x_mem[] =
+{
+    LAYOUT(0xEF000000, 0x8000, "Boot ROM"),
+    LAYOUT(0xFF800000, 0x4000, "L1 Data A"),
+    LAYOUT(0xFF804000, 0x4000, "Data A Cache"),
+    LAYOUT(0xFF900000, 0x4000, "Data B"),
+    LAYOUT(0xFF904000, 0x4000, "Data B Cache"),
+    LAYOUT(0xFFA00000, 0x4000, "Inst A"),
+    LAYOUT(0xFFA04000, 0x4000, "Inst B"),
     LAYOUT(0xFFA10000, 0x4000, "Inst Cache"),
     LAYOUT(0xFFB00000, 0x1000, "Scratchpad SRAM"),
     LAYOUT(0, 0, "SDRAM"),
@@ -156,3 +168,18 @@ static void bf537_ezkit_machine_init(MachineClass *mc)
     mc->is_default = 0;
 }
 DEFINE_MACHINE("bf537-ezkit", bf537_ezkit_machine_init)
+
+static void bf514_dr05_init(MachineState *machine)
+{
+    bfin_common_init(bf51x_mem, 16, "bf514", machine->kernel_filename,
+                     machine->kernel_cmdline);
+}
+
+static void bf514_dr05_machine_init(MachineClass *mc)
+{
+    mc->desc = "Tascam DR-05 digital audio recorder";
+    mc->init = bf514_dr05_init;
+    mc->max_cpus = 1;
+    mc->is_default = 0;
+}
+DEFINE_MACHINE("bf514-dr05", bf514_dr05_machine_init)
