@@ -100,6 +100,11 @@ static void bfin_device_init(void)
     sysbus_create_simple("bfin_uart", 0xFFC00400, NULL);
     qemu_chr_new("bfin_uart1", "null", NULL);
     sysbus_create_simple("bfin_uart", 0xFFC02000, NULL);
+
+    sysbus_create_simple("bfin_spi", 0xFFC00500, NULL);
+    qemu_chr_new("bfin_spi0", "null", NULL);
+    sysbus_create_simple("bfin_spi", 0xFFC03400, NULL);
+    qemu_chr_new("bfin_spi1", "null", NULL);
 }
 
 static void bfin_common_init(const struct bfin_memory_layout mem_layout[],
