@@ -79,6 +79,11 @@ static uint64_t bfin_sic_io_read(void *opaque, hwaddr addr, unsigned size)
 
     HW_TRACE_READ();
 
+    switch(addr) {
+    case 4:
+        return 0b011; /* boot from external SPI0 memory */
+    }
+
     return 0;
 }
 
