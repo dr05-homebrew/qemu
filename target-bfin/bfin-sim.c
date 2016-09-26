@@ -525,7 +525,7 @@ decode_PushPopReg_0(DisasContext *dc, uint16_t iw0)
     int W   = ((iw0 >> PushPopReg_W_bits) & PushPopReg_W_mask);
     int grp = ((iw0 >> PushPopReg_grp_bits) & PushPopReg_grp_mask);
     int reg = ((iw0 >> PushPopReg_reg_bits) & PushPopReg_reg_mask);
-    TCGv treg, tmp;
+    TCGv treg = 0, tmp;
     TCGv_i64 tmp64;
 
     TRACE_EXTRACT("W:%i grp:%i reg:%i", W, grp, reg);
@@ -729,7 +729,7 @@ decode_CCflag_0(DisasContext *dc, uint16_t iw0)
 
     if (opc > 4) {
         TCGv_i64 tmp64;
-        TCGCond cond;
+        TCGCond cond = 0;
 
         if (opc == 5 && I == 0 && G == 0) {
             /* CC = A0 == A1; */

@@ -92,7 +92,7 @@ static void bfin_common_init(const struct bfin_memory_layout mem_layout[],
                              ram_addr_t ram_size, const char *cpu_model,
                              const char *kernel_filename, const char *kernel_cmdline)
 {
-    CPUState *cs;
+    CPUState *cs = NULL;
     int n;
 
     ram_size *= 1024 * 1024;
