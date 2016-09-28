@@ -65,6 +65,11 @@ static void bfin_spi_do_transfer(BfinSPIState *s)
     s->spi_stat |= SPI_STAT_SPIF;
 }
 
+static bool spi_ctl_timod_is(BfinSPIState *s, uint32_t value)
+{
+    return (s->spi_ctl & SPI_CTL_TIMOD_MASK) == value;
+}
+
 static void bfin_spi_io_write(void *opaque, hwaddr addr,
                               uint64_t value, unsigned size)
 {
@@ -90,9 +95,11 @@ static void bfin_spi_io_write(void *opaque, hwaddr addr,
         break;
     case mmr_offset(spi_tdbr):
         s->spi_tdbr = value;
-        if ((s->spi_ctl & SPI_CTL_MSTR) && (s->spi_ctl & SPI_CTL_SPE) &&
-            (s->spi_ctl & SPI_CTL_TIMOD_MASK) == SPI_CTL_TIMOD_TINT) {
-            bfin_spi_do_transfer(s);
+        if ((s->spi_ctl & SPI_CTL_MSTR) && (s->spi_ctl & SPI_CTL_SPE)) {
+            if (spi_ctl_timod_is(s, SPI_CTL_TIMOD_TINT) ||
+                spi_ctl_timod_is(s, SPI_CTL_TIMOD_TDMA)) {
+                bfin_spi_do_transfer(s);
+            }
         }
         break;
     default:
@@ -114,9 +121,11 @@ static uint64_t bfin_spi_io_read(void *opaque, hwaddr addr, unsigned size)
         uint16_t value = s->spi_rdbr;
         s->spi_stat &= ~SPI_STAT_RXS;
 
-        if ((s->spi_ctl & SPI_CTL_MSTR) && (s->spi_ctl & SPI_CTL_SPE) &&
-            (s->spi_ctl & SPI_CTL_TIMOD_MASK) == SPI_CTL_TIMOD_RINT) {
-            bfin_spi_do_transfer(s);
+        if ((s->spi_ctl & SPI_CTL_MSTR) && (s->spi_ctl & SPI_CTL_SPE)) {
+            if (spi_ctl_timod_is(s, SPI_CTL_TIMOD_RINT) ||
+                spi_ctl_timod_is(s, SPI_CTL_TIMOD_RDMA)) {
+                bfin_spi_do_transfer(s);
+            }
         }
 
         return value;
