@@ -70,14 +70,14 @@ static const char * const mmr_names[] =
 static void bfin_pinctl_io_write(void *opaque, hwaddr addr,
                               uint64_t value, unsigned size)
 {
-    //BfinPinctlState *s = opaque;
+    BfinPinctlState *s = opaque;
 
     HW_TRACE_WRITE();
 }
 
 static uint64_t bfin_pinctl_io_read(void *opaque, hwaddr addr, unsigned size)
 {
-    //BfinPinctlState *s = opaque;
+    BfinPinctlState *s = opaque;
 
     HW_TRACE_READ();
 

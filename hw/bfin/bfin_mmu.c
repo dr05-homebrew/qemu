@@ -78,14 +78,14 @@ static const char * const mmr_names[0x2000 / 4] =
 static void bfin_mmu_io_write(void *opaque, hwaddr addr,
                               uint64_t value, unsigned size)
 {
-//    BfinMMUState *s = opaque;
+    BfinMMUState *s = opaque;
 
     HW_TRACE_WRITE();
 }
 
 static uint64_t bfin_mmu_io_read(void *opaque, hwaddr addr, unsigned size)
 {
-//    BfinMMUState *s = opaque;
+    BfinMMUState *s = opaque;
 
     HW_TRACE_READ();
 
