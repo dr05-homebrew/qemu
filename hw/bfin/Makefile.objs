@@ -11,3 +11,5 @@ obj-y += bfin_pll.o
 obj-y += bfin_sic.o
 obj-y += bfin_uart.o
 obj-y += bfin_spi.o
+obj-y += bfin_port.o
+obj-y += bfin_pinctl.o

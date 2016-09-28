@@ -102,6 +102,10 @@ static void bfin_device_init(void)
     sysbus_create_simple("bfin_uart", 0xFFC00400, NULL);
     qemu_chr_new("bfin_uart1", "null", NULL);
     sysbus_create_simple("bfin_uart", 0xFFC02000, NULL);
+    sysbus_create_simple("bfin_port", 0xFFC00700, NULL); /* port F */
+    sysbus_create_simple("bfin_port", 0xFFC01500, NULL); /* port G */
+    sysbus_create_simple("bfin_port", 0xFFC01700, NULL); /* port H */
+    sysbus_create_simple("bfin_pinctl", 0xFFC03200, NULL);
 
     /* SPI controllers. TODO: How do I hook them up to periphery? */
     sysbus_create_simple("bfin_spi", 0xFFC00500, NULL);
