@@ -56,14 +56,14 @@ static const char * const mmr_names[] =
 static void bfin_dma_io_write(void *opaque, hwaddr addr,
                               uint64_t value, unsigned size)
 {
-//    BfinDMAState *s = opaque;
+    BfinDMAState *s = opaque;
 
     HW_TRACE_WRITE();
 }
 
 static uint64_t bfin_dma_io_read(void *opaque, hwaddr addr, unsigned size)
 {
-//    BfinDMAState *s = opaque;
+    BfinDMAState *s = opaque;
 
     HW_TRACE_READ();
 
