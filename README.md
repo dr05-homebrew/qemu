@@ -13,10 +13,8 @@ possible without [Mike Frysinger's Blackfin port of QEMU][bfin-qemu].
 2. Run `./patch-bootrom.rb ADSP-BF514-ROM-V02.dxe`
 3. Get a raw flash image of the firmware (with [fwunpack.py]). Convert it into
    a QCOW2 image with the following commands:
-```
-qemu-img convert -f raw -O qcow2 DR-05_44.211.flash firmware.qcow2
-qemu-img resize firmware.qcow2 2M
-```
+    - `qemu-img convert -f raw -O qcow2 DR-05_44.211.flash firmware.qcow2`
+    - `qemu-img resize firmware.qcow2 2M`
 4. Run `./boot-dr05.sh -kernel ADSP-BF514-ROM-V02.dxe.patched`; Additional
    arguments:
     - Use `-d in_asm,exec,nochain,trace:bfin_reg_memory_* -singlestep` to trace
